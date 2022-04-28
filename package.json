@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.4",
+    "mysql2": "^2.3.3"
+  },
+  "name": "employee-tracker",
+  "description": "![alt text](./assets/Images/.png)\r This application creates an employee information and profile HTML webpage.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtori37/employee-tracker.git"
+  },
+  "author": "Victoria Rice",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vtori37/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/vtori37/employee-tracker#readme"
+}
