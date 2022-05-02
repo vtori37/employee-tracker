@@ -29,6 +29,8 @@ This project can be used to keep track of employees.
 ## Test
 Here is a demonstration of the application.
 
+[Click here to view the video demo](https://user-images.githubusercontent.com/--------.mp4)
+
 
 ## Contributors
 
