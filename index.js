@@ -15,7 +15,7 @@ const promptUser = () => {
       type: 'list',
       name: 'options',
       message: 'Please select from the following options:',
-      choices: ["View all departments", "View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "Update an employee"]
+      choices: ["View all departments", "View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "Update an employee", "Quit"]
     }
   ])
   .then((response) => {
@@ -85,7 +85,6 @@ const viewEmployees = () => {
 };
 
 
-
 const addDepartment = () => {
     inquirer 
     .prompt([
@@ -101,53 +100,71 @@ const addDepartment = () => {
           } return false;
         }
       },
-    ]);
-
-    let sql = `INSERT INTO department VALUES ('${askDepartment}')`;
+    ])
+    .then(res => {
+     
+      let sql = `INSERT INTO department (dep_name) VALUES ('${res.askDepartment}')`;
     dbCon.promise().query(sql)
-      .then(([rows]) => {
+    .then(([row]) => {
         console.log("============")
-        console.table(rows)
+        console.log("Adding new department...");
+        viewDepartments();
         console.log("============")
-       promptUser();
-      });  
-   
-  console.log("adding new department...");
+    });
+  });
 };
 
-// const addRole = () => {
-//   inquirer 
-//   .prompt([
-//     {
-//       type: 'input',
-//       name: 'askDepartment',
-//       message: 'Please type in the name of the new role.',
-//       validate: roleInput => {
-//         if (roleInput) {
-//           return true;
-//         } else {
-//           console.log('Please type in a new role name.');
-//         } return false;
-//       }
-//     },
-//       {
-//         type: 'input',
-//         name: 'askSalary',
-//         message: 'Please type in the salary.',
-//         validate: salInput => {
-//           if (salInput) {
-//             return true;
-//           } else {
-//             console.log('Please type in a new salary.');
-//           } return false;
-//         }
-//       }
-//   ]) 
-//   .then((response) => {
-      
-//     })  
-//   console.log("adding new roles...");
-// };
+const addRole = () => {
+  inquirer 
+  .prompt([
+    {
+      type: 'input',
+      name: 'askTitle',
+      message: 'Please type in the title of the new role.',
+      validate: roleInput => {
+        if (roleInput) {
+          return true;
+        } else {
+          console.log('Please type in a new title.');
+        } return false;
+      }
+    },
+      {
+        type: 'input',
+        name: 'askSalary',
+        message: 'Please type in the salary.',
+        validate: salInput => {
+          if (salInput) {
+            return true;
+          } else {
+            console.log('Please type in a new salary.');
+          } return false;
+        }
+      }
+  ]) 
+  .then(res => {
+    
+    let sql = `INSERT INTO employee_role (title) VALUES ('${res.askTitle}')`;
+  dbCon.promise().query(sql)
+  .then(([rows]) => {
+      console.log("============")
+      console.log("Adding title...");
+      console.log("============")
+  });
+  
+    let sql2 = `INSERT INTO employee_role (salary) VALUES ('${res.askSalary}')`;
+    dbCon.promise().query(sql)
+    .then(([rows]) => {
+      console.log("============")
+      console.log("Adding adding salary...");
+      console.log("============")
+    });
+    
+    let sql3 = `SELECT department_id FROM employee_role WHERE department_id IN`
+
+    viewRoles();
+  });
+};
 
 // const addEmployee = () => {
 //   inquirer 
@@ -177,8 +194,8 @@ const addDepartment = () => {
 //       {
 //       type: 'list',
 //       name: 'askUpdate',
-//       message: 'Please select from the following options:',
-//       choices: ['Science', 'Engineering','HR', 'Infirmary', 'Management']
+//       message: 'Would you like to update an employee?',
+//       choices: ['yes, No']
 //       }
 //     ]) 
 //     .then((response) => {

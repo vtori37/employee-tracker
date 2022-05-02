@@ -32,14 +32,13 @@ Here is a demonstration of the application.
 [Click here to view the video demo](https://user-images.githubusercontent.com/--------.mp4)
 
 
-## Contributors
-
-
 ## Technology
 * HTML5
 * CSS 
 * JS
-
+* MySQL
+* Node.js
+* Inquirer
 
 <!-- ## License 
 https://opensource.org/licenses/MIT
