@@ -140,13 +140,19 @@ const addRole = () => {
             console.log('Please type in a new salary.');
           } return false;
         }
-      }
+      },
+      {
+        type: 'list',
+        name: 'askDepId',
+        message: 'Please select which department the role belongs to.',
+        choices: ["1", "2", "3", "4", "5", "other"]
+     }
   ]) 
   .then(res => {
     
     let sql = `INSERT INTO employee_role (title) VALUES ('${res.askTitle}')`;
-  dbCon.promise().query(sql)
-  .then(([rows]) => {
+    dbCon.promise().query(sql)
+    .then(([rows]) => {
       console.log("============")
       console.log("Adding title...");
       console.log("============")
@@ -160,8 +166,13 @@ const addRole = () => {
       console.log("============")
     });
     
-    let sql3 = `SELECT department_id FROM employee_role WHERE department_id IN`
-
+    let sql3 = `INSERT INTO employee_role (department_id) VALUES ("${res.askDep}")`;
+    dbCon.promise().query(sql)
+    .then( ([rows]) => {
+      console.log("============")
+      console.log("Adding adding department ID...");
+      console.log("============")
+    })
     viewRoles();
   });
 };
@@ -188,37 +199,43 @@ const addRole = () => {
 //   console.log("adding new employee...");
 // };
 
-// const updateEmployee = () => {
-//   inquirer 
-//     .prompt([
-//       {
-//       type: 'list',
-//       name: 'askUpdate',
-//       message: 'Would you like to update an employee?',
-//       choices: ['yes, No']
-//       }
-//     ]) 
-//     .then((response) => {
+const updateEmployee = () => {
+  inquirer 
+    .prompt([
+      {
+      type: 'list',
+      name: 'askUpdate',
+      message: 'Would you like to update an employee?',
+      choices: ['yes, No']
+      }
+    ]) 
+    .then((response) => {
       
-//     })  
-//   console.log("Updating employee...");
-// };
+    })  
+  console.log("Updating employee...");
+};
 
-// const quit = () => {
-//   inquirer 
-//     .prompt([
-//       {
-//       type: 'list',
-//       name: 'askQuit',
-//       message: 'Would you like to end the connection?',
-//       choices: ['Yes', 'No']
-//       }
-//     ]) 
-//     .then((response) => {
-//       console.log('Exiting Tracker... Goodbye!') 
-//       exit();
-//     })  
-// };
+const quit = () => {
+  inquirer 
+    .prompt([
+      {
+      type: 'list',
+      name: 'askQuit',
+      message: 'Would you like to end the connection?',
+      choices: ['Yes', 'No']
+      }
+    ]) 
+    .then((response) => {
+      switch(response.askQuit) {
+        case "No":
+          promptUser();
+          break;
+          default:
+            console.log('Exiting Tracker... Goodbye!') 
+            exit();
+      }
+    })  
+};
 
 promptUser();
 
