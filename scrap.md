@@ -76,3 +76,20 @@ prompts user to select an employee to update and
 this information is:
 - updated in the database
 
+
+
+* You will have to do a query to get the other id's from other tables. In your schema you also need to set up foreign keys to link the tables
+
+* https://www.mysqltutorial.org/mysql-foreign-key/ 
+MySQL TutorialMySQL Tutorial: An Essential Guide to MySQL Foreign Key By Practical Examples
+This tutorial introduces you to MySQL foreign key constraint and shows you how to create a foreign key for a table with various reference options.
+
+* Yes so you will first have to link the tables and set up foreign keys in your schema
+
+* Then you will do the query to get all departments in your addRole function and maybe save it in a variable
+
+* Then map over the results to get name and value
+
+* that way when you pass that result in choices in inquirer it will display all department names and user can choose
+
+* Then you will also have to do joins to join the tables in the query to get all roles */

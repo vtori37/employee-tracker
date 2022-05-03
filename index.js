@@ -199,21 +199,21 @@ const addRole = () => {
 //   console.log("adding new employee...");
 // };
 
-// const updateEmployee = () => {
-//   inquirer 
-//     .prompt([
-//       {
-//       type: 'list',
-//       name: 'askUpdate',
-//       message: 'Would you like to update an employee?',
-//       choices: ['yes, No']
-//       }
-//     ]) 
-//     .then((response) => {
+const updateEmployee = () => {
+  inquirer 
+    .prompt([
+      {
+      type: 'list',
+      name: 'askUpdate',
+      message: 'Would you like to update an employee?',
+      choices: ['yes, No']
+      }
+    ]) 
+    .then((response) => {
       
-//     })  
-//   console.log("Updating employee...");
-// };
+    })  
+  console.log("Updating employee...");
+};
 
 const quit = () => {
   inquirer 
